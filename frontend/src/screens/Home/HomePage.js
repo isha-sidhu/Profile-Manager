@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Button } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import "./HomeStyles.css";
+import { BASE_URL } from "../../constants/Const";
 
 const ProfileCard = ({ pic, name, email, _id }) => {
   return (
@@ -26,16 +27,13 @@ function LandingPage({ history }) {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(
-          "http://localhost:5000/api/users/getAllProfile",
-          {
-            method: "GET",
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: `Bearer ${userInfo.token}`, // Include the bearer token
-            },
-          }
-        );
+        const response = await fetch(BASE_URL + "/api/users/getAllProfile", {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${userInfo.token}`, // Include the bearer token
+          },
+        });
 
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);

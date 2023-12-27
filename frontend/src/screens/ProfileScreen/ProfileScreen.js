@@ -8,6 +8,7 @@ import Loading from "../../components/Loading";
 import ErrorMessage from "../../components/ErrorMessage";
 import { HOBBY_OPTIONS } from "../../constants/userConstants";
 import Select from "react-select";
+import { BASE_URL } from "../../constants/Const";
 
 const ProfileScreen = ({ location, history }) => {
   const [currentUserId, setCurrentUserId] = useState("");
@@ -32,7 +33,7 @@ const ProfileScreen = ({ location, history }) => {
   const fetchData = async (userId) => {
     try {
       const response = await fetch(
-        `http://localhost:5000/api/users/getProfileById?id=${userId}`,
+        BASE_URL + `/api/users/getProfileById?id=${userId}`,
         {
           method: "GET",
           headers: {
@@ -93,8 +94,7 @@ const ProfileScreen = ({ location, history }) => {
         .then((data) => {
           setPic(data.url.toString());
         })
-        .catch((err) => {
-        });
+        .catch((err) => {});
     } else {
       return setPicMessage("Please Select an Image");
     }

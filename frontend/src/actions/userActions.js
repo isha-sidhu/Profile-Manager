@@ -1,3 +1,4 @@
+import { BASE_URL } from "../constants/Const";
 import {
   USER_LOGIN_FAIL,
   USER_LOGIN_REQUEST,
@@ -23,7 +24,7 @@ export const login = (email, password) => async (dispatch) => {
     };
 
     const { data } = await axios.post(
-      "/api/users/login",
+      BASE_URL + "/api/users/login",
       { email, password },
       config
     );
@@ -57,7 +58,11 @@ export const register = (userData) => async (dispatch) => {
       },
     };
 
-    const { data } = await axios.post("/api/users", userData, config);
+    const { data } = await axios.post(
+      BASE_URL + "/api/users",
+      userData,
+      config
+    );
 
     dispatch({ type: USER_REGISTER_SUCCESS, payload: data });
 
@@ -90,7 +95,11 @@ export const updateProfile = (user) => async (dispatch, getState) => {
       },
     };
 
-    const { data } = await axios.post("/api/users/profile", user, config);
+    const { data } = await axios.post(
+      BASE_URL + "/api/users/profile",
+      user,
+      config
+    );
 
     dispatch({ type: USER_UPDATE_SUCCESS, payload: data });
 
