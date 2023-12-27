@@ -4,13 +4,15 @@ import { useSelector } from "react-redux";
 import "./HomeStyles.css";
 import { BASE_URL } from "../../constants/Const";
 
-const ProfileCard = ({ pic, name, email, _id }) => {
+const ProfileCard = ({ pic, name, email, _id, dob, gender }) => {
   return (
     <div className="profile-card">
       <img src={pic} alt={name} className="profile-pic" />
       <div className="profile-info">
         <h3>{name}</h3>
         <p>{email}</p>
+        <p>{gender}</p>
+        <p>{dob}</p>
       </div>
       <Button className="w-100" href={`/profile?id=${_id}`}>
         Edit
